@@ -1,0 +1,28 @@
+digraph G {bgcolor="#0000FF44:#FF000044" gradientangle=90
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif", style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif", penwidth=2]
+    init [fillcolor="yellow:green" gradientangle=270 label="Start\nSet Init Parameter (.5)"]
+    final [label="Stop\nAccept Parameters" fillcolor="red" shape="doubleoctagon"]
+    design [label="Design \nFind Min. of gray area", shape=cylinder fillcolor="pink"]
+    measure [label="Measure \n Measure CPU time", shape=box3d, fillcolor="darkgray"]
+    analyze [label="Analyze\nVisualize response surface", shape=egg, fillcolor="skyblue"]
+
+
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		fillcolor="gray";
+		gradientangle=0
+		label = "Bayesian Optimization \nFlow";
+        design -> measure
+        measure ->analyze[label="CPU time\nchanged"]
+	}
+
+    init->measure[label="",style="dashed", penwidth=1.5 color="green"]
+    measure->final[label="CPU time\nunchanged", color="red", style=dashed]
+    analyze->design[label="Repeat" penwidth=2]
+
+ 
+
+}
