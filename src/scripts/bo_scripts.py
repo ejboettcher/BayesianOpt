@@ -15,13 +15,13 @@ class BayesianOptimizer:
     def __init__(self, num_parameters):
         self.num_parameters =num_parameters
         self.parameters = []
-        self.measurements = [        ]
+        self.measurements = []
         self.xo = np.array([0.5]*num_parameters)
     
     def ask(self):
         if len(self.measurements) == 0:
             return self.xo
-        return self.new_parameters()
+        return self.new_parameter()
     
     def new_parameter(self):
         gpr = GPR4(
@@ -29,13 +29,28 @@ class BayesianOptimizer:
             self.measurements,
             sigma = 0.15,
         )
-        return random_search(gpr, self.num_parameters)[0]
+        new_vector = random_search(gpr, self.num_parameters)
+        return new_vector
     
     def tell(self, parameter, measurement):
         self.parameters.append(parameter)
         self.measurements.append(measurement)
 
-def random_search(gpr, num_parameters, num_iterations=1000):
+    def plot(self, x, y, title="Iterations vs CPU Time"):
+        matplotlib.rcParams.update({'font.size': 24})
+        fig, ax  = plt.subplots(figsize=(11,9))
+        plt.rc('figure', titlesize=30)  
+        ax.plot(x, y, '-.', linewidth=4.0)
+        if title is not None:
+            ax.set_title(title )
+        ax.set_xlabel("Iterations")
+        ax.set_ylabel("CPU Time")
+        plt.show()
+        plt.close()
+
+
+
+def random_search(gpr, num_parameters, num_iterations=200):
     step_size = 0.1
     x_current = np.random.normal(size=num_parameters)
     x_current, lcb_current = evaluate(gpr, x_current)
@@ -69,10 +84,13 @@ class GPR4:
         self.y -= self.mean_y
 
     def kernel(self, x1, x2):
-        distance_squared = ((x1-x2)**2)
+        if isinstance(x1, (int, float)):
+            distance_squared = ((x1-x2)**2)
+        else:
+            distance_squared = ((x1-x2)**2).sum()
         return np.exp(-distance_squared/(2*self.sigma**2))
     
-    def estimate(self, query_parameter):
+    def estimate(self, query_parameter):        
         kernels_x_query = np.array([self.kernel(x, query_parameter)
                                     for x in self.x])
         kernels_x_x = np.array([[
@@ -102,7 +120,7 @@ def plot_gpr(x, expectation, uncertainty, values=None, title=None):
     plt.close()
 
 
-def init_plot(uncertainty=.8, cpu=1.2):
+def init_plot(uncertainty=.8, ):
     x = np.linspace(0,1,100)
     y = np.ones((100,)) * cpu
     plot_gpr(x, y, uncertainty, values=None, title="Initial System")
@@ -110,7 +128,7 @@ def init_plot(uncertainty=.8, cpu=1.2):
 
 
 #gpr = GPR4(.5, 1.2, 8)
-def init_point(sigma=0.15, cpu=1.2):
+def init_point(sigma=0.15, ):
     gpr = GPR4([0.50, 0.0], [1.52, 1.21], sigma)
     x_hats= np.linspace(0,1,100)
     y_hats, sigma_y_hats = zip(*[gpr.estimate(x_hat) for x_hat in x_hats])
@@ -118,7 +136,7 @@ def init_point(sigma=0.15, cpu=1.2):
                                                      [0, 1.21]]),
                                                      title="Two points")
 
-def init_pointb(sigma=0.15, cpu=1.2):
+def init_pointb(sigma=0.15, ):
     gpr = GPR4([0.50], [1.52,], sigma)
     x_hats= np.linspace(0,1,100)
     y_hats, sigma_y_hats = zip(*[gpr.estimate(x_hat) for x_hat in x_hats])
@@ -126,11 +144,20 @@ def init_pointb(sigma=0.15, cpu=1.2):
                                                     ]), title="Baseline")
 
 
+def init_point3(sigma=0.15, title="Three Points"):
+    x = [0.5, 0.0, 0.17]
+    y = [1.52, 1.21, 1.31]
+    gpr = GPR4(x, y, sigma)
+    x_hats= np.linspace(0,1,100)
+    y_hats, sigma_y_hats = zip(*[gpr.estimate(x_hat) for x_hat in x_hats])
+    plot_gpr(x_hats, y_hats, np.array(sigma_y_hats), np.array([x,y]).T,
+                                                     title=title)
 
-
-def lowest_point(sigma=0.15, cpu=1.2, title="Design Next Experiment"):
-    x = [0.5, 0.0]
+def lowest_point(sigma=0.15,  title="Design Next Experiment"):
+    x = [0.5, 0.0, ]
     y = [1.52, 1.21]
+    x = [0.5, .0, 0.17]
+    y = [1.52, 1.21, 1.31]
     values = np.array(list(zip(x,y)))
     matplotlib.rcParams.update({'font.size': 24})
     gpr = GPR4(x, y, sigma)
@@ -161,4 +188,21 @@ def lowest_point(sigma=0.15, cpu=1.2, title="Design Next Experiment"):
 
 #init_plot()
 #init_pointb()
-lowest_point()
+#init_point3()
+#lowest_point()
+
+def bo_run():
+    bo= BayesianOptimizer(num_parameters=7)
+    x = []
+    y = []
+    for _ in range(45):
+        parameter = bo.ask()
+        cpu_time = jit_plus_server(parameter)
+        bo.tell(parameter, cpu_time)
+        print(_,  parameter, round(cpu_time, 2), )
+        
+        x.append(_)
+
+    bo.plot(np.array(x),bo.measurements)
+
+bo_run()

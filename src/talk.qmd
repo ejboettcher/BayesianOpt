@@ -17,11 +17,41 @@ bibliography: references.bib
 
 ## Bayesian Optimization
 
-This talk is part 3 of a series on Experimental Design based strongly on 
-Dr. D. Sweet's book called "Experimentation for Engineers"
+
+This talk is part 3 of a series on Experimental Design tutorials given at GemCity ML.  
+It based strongly on 
+Dr. David Sweet's book called "Experimentation for Engineers" (@sweet)  
+
+:::{.columns}
+::::{.column width=49%}
+
+<br>
+<br>  
+
+Experimental Design Tutorials:
+
+* A/B Testing
+* Multi-arm Bandints
+* Bayesian Optimization
+
+::::
+::::{.column width=49%}
+
+![](./img/experimentation4engineers.jpg)
+::::
+:::
 
 {{< include _markdown/bayesianOpt.md >}}
 
+---
 ## Thank you
 
-Evelyn Boettcher
+We optimized a system that would have took us over 1000 years to a couple days!  
+
+<br>  
+
+### Questions
+<br> 
+
+
+

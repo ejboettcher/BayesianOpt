@@ -2,11 +2,11 @@ digraph G {bgcolor="#0000FF44:#FF000044" gradientangle=90
 	fontname="Helvetica,Arial,sans-serif"
 	node [fontname="Helvetica,Arial,sans-serif", style=filled]
 	edge [fontname="Helvetica,Arial,sans-serif", penwidth=2]
-    init [fillcolor="yellow:green" gradientangle=270 label="Start\nSet Init Parameter (.5)"]
+    init [fillcolor="yellow:green" gradientangle=270 label="Start\nSet Init Parameter \n(.5)"]
     final [label="Stop\nAccept Parameters" fillcolor="red" shape="doubleoctagon"]
-    design [label="Design \nFind Min. of gray area", shape=cylinder fillcolor="pink"]
+    design [label="Design \nFind min. of response surface \n(blue area)", shape=cylinder fillcolor="pink"]
     measure [label="Measure \n Measure CPU time", shape=box3d, fillcolor="darkgray"]
-    analyze [label="Analyze\nVisualize response surface", shape=egg, fillcolor="skyblue"]
+    analyze [label="Analyze / Visualize \n response surface", shape=egg, fillcolor="skyblue"]
 
 
 	subgraph cluster_0 {

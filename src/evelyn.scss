@@ -81,10 +81,10 @@ $headings-font-weight:  500 !default;
  *********************************************/
 .reveal p {
   margin: 1px 0;
-  line-height: 1.0;
+  line-height: 1.05;
   text-align: left;
   margin-left: 1em;
-  font-size: 1.2em;
+  font-size: 1.25em;
  }
 
 
@@ -107,7 +107,8 @@ $headings-font-weight:  500 !default;
   margin: 1px 0;
   margin-left: 1.2em;
   padding: 0.1em;
-  font-size: 1.1em;}
+  font-size: 1.1em;
+  line-height: 1.05;}
 
 .reveal ol {
   list-style-type: decimal; }
@@ -156,14 +157,18 @@ $headings-font-weight:  500 !default;
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 0.55em;
+  font-size: 0.9em;
   font-family: monospace;
-  line-height: 1.2em;
+  line-height: 0.95em;
   word-wrap: break-word;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
 .reveal code {
   font-family: monospace; }
+
+.reveal sourceCode {
+  font-size: 0.9em;
+}
 
 .reveal pre code {
   display: block;
@@ -172,7 +177,8 @@ $headings-font-weight:  500 !default;
   max-height: 400px;
   word-wrap: normal;
   background: #3F3F3F;
-  color: #DCDCDC; }
+  color: #DCDCDC; 
+  font-size: 1.02em;}
 
 .reveal table {
   /*margin: auto;
