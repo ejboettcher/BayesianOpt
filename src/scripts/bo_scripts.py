@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib 
 
 
 def jit_plus_server(parameters):
@@ -85,13 +86,16 @@ class GPR4:
     
 
 def plot_gpr(x, expectation, uncertainty, values=None, title=None):
+    matplotlib.rcParams.update({'font.size': 24})
     fig, ax  = plt.subplots(figsize=(11,9))
+    plt.rc('figure', titlesize=30)  
+    #in
     if values is not None:
-        ax.plot(values[:,0], values[:,1], 'o', color='tab:brown')
-    ax.plot(x, expectation, '-.')
+        ax.plot(values[:,0], values[:,1], 'o', color='tab:brown', ms=20)
+    ax.plot(x, expectation, '-.', linewidth=4.0)
     ax.fill_between(x, expectation-uncertainty, expectation+uncertainty, alpha=0.2)
     if title is not None:
-        ax.set_title(title)
+        ax.set_title(title, )
     ax.set_xlabel("Parameters Values")
     ax.set_ylabel("CPU Time")
     plt.show()
@@ -104,7 +108,6 @@ def init_plot(uncertainty=.8, cpu=1.2):
     plot_gpr(x, y, uncertainty, values=None, title="Initial System")
 
 
-# init_plot()
 
 #gpr = GPR4(.5, 1.2, 8)
 def init_point(sigma=0.15, cpu=1.2):
@@ -123,13 +126,13 @@ def init_pointb(sigma=0.15, cpu=1.2):
                                                     ]), title="Baseline")
 
 
-#init_point()
+
 
 def lowest_point(sigma=0.15, cpu=1.2, title="Design Next Experiment"):
     x = [0.5, 0.0]
     y = [1.52, 1.21]
     values = np.array(list(zip(x,y)))
-    
+    matplotlib.rcParams.update({'font.size': 24})
     gpr = GPR4(x, y, sigma)
     x_hats= np.linspace(0,1,100)
     y_hats, uncertainty = zip(*[gpr.estimate(x_hat) for x_hat in x_hats])
@@ -155,4 +158,7 @@ def lowest_point(sigma=0.15, cpu=1.2, title="Design Next Experiment"):
     plt.show()
     plt.close()
 
+
+#init_plot()
+#init_pointb()
 lowest_point()

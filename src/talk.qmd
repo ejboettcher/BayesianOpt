@@ -1,19 +1,27 @@
 ---
 title: "Bayesian Optimization"
+order: 1
+format: revealjs
 subtitle: "Automating Experimental Optimization"
 date: "2024"
 author: "Presented by Evelyn J. Boettcher"
-title-slide-attributes:
+fig-cap-location: margin 
+title-slide-attributes: 
     data-background-image: 'img/logos/gem_cityML_slide.png'
-    data-background-size: "100% 100% "
-    data-background-position: "0% "
-    data-background-opacity: "0.95"
-format:
-    revealjs:
-        incremental: false
-fig-cap-location: margin
-bibliography: references.bib
+    data-background-size: "100% 100%"
+    data-background-position: "0%"
+    data-background-opacity: "0.95" 
 
+bibliography: references.bib
 ---
 
+## Bayesian Optimization
 
+This talk is part 3 of a series on Experimental Design based strongly on 
+Dr. D. Sweet's book called "Experimentation for Engineers"
+
+{{< include _markdown/bayesianOpt.md >}}
+
+## Thank you
+
+Evelyn Boettcher

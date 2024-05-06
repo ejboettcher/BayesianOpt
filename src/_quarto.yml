@@ -11,19 +11,16 @@ format:
     theme: [default, evelyn.scss]
     css: evelyn.css
     logo: './img/logos/DidactexLogo.png'
-    footer: "Gem City Tech ML/AI "
+    footer: "Gem City Tech ML/AI"
     scrollable: true
     transition: slide
-    transition-speed: fast
-    
-    chalkboard:
+    transition-speed: fast 
+    chalkboard: 
       buttons: true
 
 execute:
-  echo: true
+  echo: false
   output: true
-  error: true
+  error: false
 
 jupyter: python3
-
-
