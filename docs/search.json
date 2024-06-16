@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "talk.html#bayesian-optimization",
+    "href": "talk.html#bayesian-optimization",
+    "title": "Bayesian Optimization",
+    "section": "Bayesian Optimization",
+    "text": "Bayesian Optimization\nThis talk is part 3 of a series on Experimental Design tutorials given at GemCity ML.\nIt based strongly on Dr. David Sweet’s book called “Experimentation for Engineers” (Sweet (2022))\n\n\n \nExperimental Design Tutorials:\n\nA/B Testing\nMulti-arm Bandints\nBayesian Optimization"
+  },
+  {
+    "objectID": "talk.html#why-design-an-experiment",
+    "href": "talk.html#why-design-an-experiment",
+    "title": "Bayesian Optimization",
+    "section": "Why Design an Experiment",
+    "text": "Why Design an Experiment\nIt cost money to run an experiment!\nIt also cost money to train algorithms and implement algorithms.\n GPU time is expensive, if you can train and run on a CPU you can save a lot of money.\n \nHow do you know if you can reduce sample size and runtime?"
+  },
+  {
+    "objectID": "talk.html#bayesian-optimization-1",
+    "href": "talk.html#bayesian-optimization-1",
+    "title": "Bayesian Optimization",
+    "section": "Bayesian Optimization",
+    "text": "Bayesian Optimization\nBayesian optimization is a sequential design strategy for global optimization of black-box functions that does not assume any functional forms.\n \nHow is this Machine Learning?\nMachine Learning Models have multiple hyper-parameters that need to be optimized. The model is a black-box function. Training a ML model can take hours to weeks per configuration. You want to quickly find the hyper-parameters that work well and before this decade ends!"
+  },
+  {
+    "objectID": "talk.html#software-engineering-example",
+    "href": "talk.html#software-engineering-example",
+    "title": "Bayesian Optimization",
+    "section": "Software Engineering Example",
+    "text": "Software Engineering Example\nThe following example is from “Experimentation for Engineers”, by Dr. Sweet (Sweet (2022)).\n\nOutline of Talk\n\nOptimize a single parameter\nModel the Response Surface\nOptimize over the Acquisition Function\n\nExpected result - uncertainty (aka Lower Confidence Bound (LCB))\n\nPull it all together for a multi variable Bayesian Optimization"
+  },
+  {
+    "objectID": "talk.html#bayesian-optimization-flow",
+    "href": "talk.html#bayesian-optimization-flow",
+    "title": "Bayesian Optimization",
+    "section": "Bayesian Optimization Flow",
+    "text": "Bayesian Optimization Flow"
+  },
+  {
+    "objectID": "talk.html#what-measurement-should-we-take",
+    "href": "talk.html#what-measurement-should-we-take",
+    "title": "Bayesian Optimization",
+    "section": "What measurement should we take?",
+    "text": "What measurement should we take?\nLet’s take a value in the middles.\n\nValue = 0.5\n\nResult: CPU Time is ~1.5\nSo, what happens to our uncertainty.\n\nnear value = 0.5\nnear 0\nnear 1?"
+  },
+  {
+    "objectID": "talk.html#take-a-measurement",
+    "href": "talk.html#take-a-measurement",
+    "title": "Bayesian Optimization",
+    "section": "Take a measurement",
+    "text": "Take a measurement\n\n\n\n\nNote: Uncertainty follows an exponential decay: \\(exp(-x^2)\\)"
+  },
+  {
+    "objectID": "talk.html#now-what",
+    "href": "talk.html#now-what",
+    "title": "Bayesian Optimization",
+    "section": "Now what,",
+    "text": "Now what,\nHow do we decide on which point to take next?\nPick a point that has the highest uncertainty!\nWe want to reduce uncertainty.\n\n\n\n\n\nLet’s make another measurement.\n\nPick, Value = 0\n\nWe could have chosen 1 too. \n\n\nRun CPU Test\n\nResult = ~1.2"
+  },
+  {
+    "objectID": "talk.html#random-search",
+    "href": "talk.html#random-search",
+    "title": "Bayesian Optimization",
+    "section": "Random Search",
+    "text": "Random Search\n  \nWait!!!!!"
+  },
+  {
+    "objectID": "talk.html#wait",
+    "href": "talk.html#wait",
+    "title": "Bayesian Optimization",
+    "section": "Wait,",
+    "text": "Wait,\nHow is this different than Monte Carlo Method\nMonte Carlo method is similar in a since that we randomly select values to run our experiment.\nHowever, in Bayesian Optimization we feed in past results to know if we are moving in the right direction.\nWe can see how the systems is converging to an optimized solution."
+  },
+  {
+    "objectID": "talk.html#thank-you",
+    "href": "talk.html#thank-you",
+    "title": "Bayesian Optimization",
+    "section": "Thank you",
+    "text": "Thank you\nWe optimized a system that would have took us over 1000 years to a couple days!\n\nQuestions\n\n\n\n\nGem City Tech ML/AI\n\n\n\nSweet, D. 2022. Experimentation for Engineers: From a/b Testing to Bayesian Optimization. Manning. https://books.google.com/books?id=9xONzgEACAAJ."
+  },
+  {
+    "objectID": "talk.html#why-design-an-experiment-1",
+    "href": "talk.html#why-design-an-experiment-1",
+    "title": "Bayesian Optimization",
+    "section": "Why Design an Experiment",
+    "text": "Why Design an Experiment\nThere are mathematical models you can use to identify what is the number of sample you need to get good results. (see A/B testing)\n In addition, not knowing how to adjust your experiment to meet the risk, can cost you your job and/or the company a lot of money.\n When, Google debuted their Bard, it failed. It cost the company $100B in valuation. This was a high risk demo.\n You need to know how to adjust your experiments for the risk!\nThis is where design experimentation comes in. How does one adjust for risk while reducing the cost of running the experiment.\n\nOne way to reduce cost and risk is to set-up an A/B Test, but that is only good for two variables: A and B.\nHow do you design an experiment when you have lots of variables.\nThis is were Bayesian Optimization comes in."
+  },
+  {
+    "objectID": "talk.html#bayesian-optimization-bo",
+    "href": "talk.html#bayesian-optimization-bo",
+    "title": "Bayesian Optimization",
+    "section": "Bayesian Optimization: BO",
+    "text": "Bayesian Optimization: BO\nBayesian optimization is a sequential design strategy for global optimization of black-box functions that does not assume any functional forms.\n \nHow is this Machine Learning?\nMachine Learning Models have multiple hyper-parameters that need to be optimized.\n\nThe model is a black-box function.\nTraining a ML model can take hours to weeks per configuration.\nYou want to quickly find the hyper-parameters that work well and before this decade ends!"
+  },
+  {
+    "objectID": "talk.html#bayesian-optimization-bo-1",
+    "href": "talk.html#bayesian-optimization-bo-1",
+    "title": "Bayesian Optimization",
+    "section": "Bayesian Optimization: BO",
+    "text": "Bayesian Optimization: BO\nBayesian optimization is a sequential design strategy for global optimization of black-box functions that does not assume any functional forms.\n\nHow is this useful for Software Engineering?\n\n\nSay you need to speed up the a web application. You can control seven parameters. However, each experiment will take an hour to run. (Sweet (2022))\n\nBO: would take 2 days to run!\n\nYes, it is that good.\n\nGrid: at 1/10 span spacing would take 10**7/24 = 417,000 days\n\n\nIt is worth the time to set up a Bayesian Optimization algorithm!"
+  },
+  {
+    "objectID": "talk.html#what-measurement-should-we-take-first",
+    "href": "talk.html#what-measurement-should-we-take-first",
+    "title": "Bayesian Optimization",
+    "section": "What measurement should we take first?",
+    "text": "What measurement should we take first?\nLet’s take a value in the middle.\n\nValue = 0.5\n\nRun CPU test.\nWhich results in\n\nCPU Time is ~1.5\n\n\n\n\nSo, what happens to our uncertainty.\n\nnear value = 0.5?\nnear 0?\nnear 1?"
+  },
+  {
+    "objectID": "talk.html#design-next-experiment",
+    "href": "talk.html#design-next-experiment",
+    "title": "Bayesian Optimization",
+    "section": "Design next Experiment",
+    "text": "Design next Experiment\n\n\nWe want to pick a value that lowers uncertainty but,\nhas the best expected outcome.\n\n\n\n\nFocus on the Goal\nRemember our goal is to make the website faster."
+  },
+  {
+    "objectID": "talk.html#nice-but-how-did-you-make-that-response-surface",
+    "href": "talk.html#nice-but-how-did-you-make-that-response-surface",
+    "title": "Bayesian Optimization",
+    "section": "Nice, but how did you make that response surface?",
+    "text": "Nice, but how did you make that response surface?\n\nThe shaded area is our uncertainty times the standard deviation of results (y).\n\n\\(uncertainty * \\sigma_y\\)\n\n\nHow is uncertainty calculated?\n\ndef kernel(self, x1, x2):\n  # find the distance between a measured and unmeasured point\n  # Want to weight points near a measured one more\n  distance_squared = ((x1-x2)**2)\n  return np.exp(-distance_squared/(2*self.sigma**2))\n\ndef estimate(self, query_parameter):\n  kernels_x_query = np.array([self.kernel(x, query_parameter)\n                              for x in self.x])\n  kernels_x_x = np.array([[\n      self.kernel(x1, x2) for x1 in self.x]\n      for x2 in self.x])\n  weights= kernels_x_query.T @ np.linalg.inv(kernels_x_x)\n  expectation = self.mean_y + weights @ self.y  # Dashed line\n  uncertainty_squared = 1 - weights @ kernels_x_query\n  uncertainty = np.sqrt(uncertainty_squared)"
+  },
+  {
+    "objectID": "talk.html#run-the-experiment",
+    "href": "talk.html#run-the-experiment",
+    "title": "Bayesian Optimization",
+    "section": "Run the experiment",
+    "text": "Run the experiment\nValue = .17\nimport bo_scripts as bo\n# GPR is Gaussian Processes Response\nx = [0.5, 0.0, ]\ny = [1.52, 1.21]\nsigma = .5\ngpr = bo.GPR4(x, y, sigma)\nx_hat = 0.17  # Our value    \ny_hat, uncertainty = gpr.estimate(x_hat) \nprint(f\"y_hat is {round(y_hat,2)} with uncertainty={round(uncertainty,2)}\")\ny_hat is 1.31 with uncertainty=0.02"
+  },
+  {
+    "objectID": "talk.html#converging-to-optimal-solution",
+    "href": "talk.html#converging-to-optimal-solution",
+    "title": "Bayesian Optimization",
+    "section": "Converging to Optimal Solution",
+    "text": "Converging to Optimal Solution\nWe can see that we are converging quickly to an optimal solution\n\n\nIf Second Measure had value 0 or 1\nRemember we chose 0 to be our second value. We still get the same solution.\n\n\n\nValue = 0\nValue = 1"
+  },
+  {
+    "objectID": "talk.html#now-multi-variables",
+    "href": "talk.html#now-multi-variables",
+    "title": "Bayesian Optimization",
+    "section": "Now Multi Variables",
+    "text": "Now Multi Variables\nThis is where the fun begins.\nGiven\nOur CPU test takes 1 hour and we want to sample each variable 10 times.\n\nHow long would it take to run this experiment.\n\n10 * 10 * 10 * 10 * 10 * 10 * 10\n\\(10^7\\)\n~ 417,000 days\n\nIn 1000 years no one is going to care about your website.\n So how do we improve the website while the content is still current?"
+  },
+  {
+    "objectID": "talk.html#what",
+    "href": "talk.html#what",
+    "title": "Bayesian Optimization",
+    "section": "What,",
+    "text": "What,\nHow is this different than Monte Carlo Method\nMonte Carlo method is similar in a sense that we randomly select values to run our experiment.\n\n\n\nHowever, in Bayesian Optimization we feed in past results and model the response surface to know if we are moving in the right direction.\n\nWe can see how the systems is converging to an optimized solution."
+  },
+  {
+    "objectID": "talk.html#bo-with-random-search",
+    "href": "talk.html#bo-with-random-search",
+    "title": "Bayesian Optimization",
+    "section": "BO with Random Search",
+    "text": "BO with Random Search\n\nGenerate our next design experiment by adding (small) random number to each value in your vector\nEvaluate this new vector of parameters\nCompare old and new vector results, take best.\nRepeat"
+  },
+  {
+    "objectID": "talk.html#bo-with-random-search-1",
+    "href": "talk.html#bo-with-random-search-1",
+    "title": "Bayesian Optimization",
+    "section": "BO with Random Search",
+    "text": "BO with Random Search\nAsk\n\nCalculate the response curve and find the low confidence band (LCD)\nSpend some time looking for the new vector to try, via estimates.\n\nEach iteration we estimate our expectation.\nTest if lcb is lower with the new vector\nRepeat 200 times\n\nExport the best vector\n\nTell\n\nActually run the experiment (~1 hour)\nAppend measurements\n\nLastly\n\nRepeat for 2 days (48 runs)\n\nNote: It will take longer to calculate the estimates, when the number of measurements increase."
+  },
+  {
+    "objectID": "talk.html#bo-results",
+    "href": "talk.html#bo-results",
+    "title": "Bayesian Optimization",
+    "section": "BO Results",
+    "text": "BO Results"
+  }
+]
