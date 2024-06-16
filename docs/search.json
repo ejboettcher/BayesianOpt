@@ -74,7 +74,7 @@
     "href": "talk.html#thank-you",
     "title": "Bayesian Optimization",
     "section": "Thank you",
-    "text": "Thank you\nWe optimized a system that would have took us over 1000 years to a couple days!\n\nQuestions\n\n\n\n\nGem City Tech ML/AI\n\n\n\nSweet, D. 2022. Experimentation for Engineers: From a/b Testing to Bayesian Optimization. Manning. https://books.google.com/books?id=9xONzgEACAAJ."
+    "text": "Thank you"
   },
   {
     "objectID": "talk.html#why-design-an-experiment-1",
@@ -116,7 +116,7 @@
     "href": "talk.html#nice-but-how-did-you-make-that-response-surface",
     "title": "Bayesian Optimization",
     "section": "Nice, but how did you make that response surface?",
-    "text": "Nice, but how did you make that response surface?\n\nThe shaded area is our uncertainty times the standard deviation of results (y).\n\n\\(uncertainty * \\sigma_y\\)\n\n\nHow is uncertainty calculated?\n\ndef kernel(self, x1, x2):\n  # find the distance between a measured and unmeasured point\n  # Want to weight points near a measured one more\n  distance_squared = ((x1-x2)**2)\n  return np.exp(-distance_squared/(2*self.sigma**2))\n\ndef estimate(self, query_parameter):\n  kernels_x_query = np.array([self.kernel(x, query_parameter)\n                              for x in self.x])\n  kernels_x_x = np.array([[\n      self.kernel(x1, x2) for x1 in self.x]\n      for x2 in self.x])\n  weights= kernels_x_query.T @ np.linalg.inv(kernels_x_x)\n  expectation = self.mean_y + weights @ self.y  # Dashed line\n  uncertainty_squared = 1 - weights @ kernels_x_query\n  uncertainty = np.sqrt(uncertainty_squared)"
+    "text": "Nice, but how did you make that response surface?\n\nThe shaded area is our uncertainty times the standard deviation of results (y).\n\n\\(uncertainty * \\sigma_y\\)\n\n\nHow is uncertainty calculated?\n\ndef kernel(self, x1, x2):\n  # find the distance between a measured and unmeasured point\n  # Want to weight points near a measured one more\n  distance_squared = ((x1-x2)**2)\n  return np.exp(-distance_squared/(2*self.sigma**2))\n\ndef estimate(self, query_parameter):\n  kernels_x_query = np.array([self.kernel(x, query_parameter)\n                              for x in self.x])\n  kernels_x_x = np.array([[\n      self.kernel(x1, x2) for x1 in self.x]\n      for x2 in self.x])\n  weights= kernels_x_query.T @ np.linalg.inv(kernels_x_x)\n  expectation = self.mean_y + weights @ self.y  # Dashed line\n  uncertainty_squared = 1 - weights @ kernels_x_query\n  uncertainty = np.sqrt(uncertainty_squared)\n  return expectation, self.std_y*uncertainty"
   },
   {
     "objectID": "talk.html#run-the-experiment",
@@ -166,5 +166,19 @@
     "title": "Bayesian Optimization",
     "section": "BO Results",
     "text": "BO Results"
+  },
+  {
+    "objectID": "talk.html#lets-look-at-the-code.",
+    "href": "talk.html#lets-look-at-the-code.",
+    "title": "Bayesian Optimization",
+    "section": "Lets look at the code.",
+    "text": "Lets look at the code."
+  },
+  {
+    "objectID": "talk.html#thank-you-1",
+    "href": "talk.html#thank-you-1",
+    "title": "Bayesian Optimization",
+    "section": "Thank you",
+    "text": "Thank you\nWe optimized a system that would have took us over 1000 years to a couple days!\n\nQuestions\n\n\n\n\nGem City Tech ML/AI\n\n\n\nSweet, D. 2022. Experimentation for Engineers: From a/b Testing to Bayesian Optimization. Manning. https://books.google.com/books?id=9xONzgEACAAJ."
   }
 ]

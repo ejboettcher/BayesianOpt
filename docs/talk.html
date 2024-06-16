@@ -430,7 +430,7 @@ Presented by Evelyn J. Boettcher
 <section id="bayesian-optimization" class="slide level2">
 <h2>Bayesian Optimization</h2>
 <p>This talk is part 3 of a series on Experimental Design tutorials given at GemCity ML.<br>
-It based strongly on Dr.&nbsp;David Sweet’s book called “Experimentation for Engineers” (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you" role="doc-biblioref" onclick="">2022</a>)</span>)</p>
+It based strongly on Dr.&nbsp;David Sweet’s book called “Experimentation for Engineers” (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you-1" role="doc-biblioref" onclick="">2022</a>)</span>)</p>
 <div class="columns">
 <div class="column" style="width:49%;">
 <p><br> <br></p>
@@ -484,7 +484,7 @@ You want to quickly find the hyper-parameters that work well and before this dec
 <h3 id="how-is-this-useful-for-software-engineering">How is this useful for Software Engineering?</h3>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p>Say you need to speed up the a web application. You can control seven parameters. However, each experiment will take an hour to run. (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you" role="doc-biblioref" onclick="">2022</a>)</span>)</p>
+<p>Say you need to speed up the a web application. You can control seven parameters. However, each experiment will take an hour to run. (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you-1" role="doc-biblioref" onclick="">2022</a>)</span>)</p>
 <ul>
 <li>BO: would take 2 days to run!
 <ul>
@@ -501,7 +501,7 @@ You want to quickly find the hyper-parameters that work well and before this dec
 </section>
 <section id="software-engineering-example" class="slide level2">
 <h2>Software Engineering Example</h2>
-<p>The following example is from “Experimentation for Engineers”, by Dr.&nbsp;Sweet (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you" role="doc-biblioref" onclick="">2022</a>)</span>).<br>
+<p>The following example is from “Experimentation for Engineers”, by Dr.&nbsp;Sweet (<span class="citation" data-cites="sweet">Sweet (<a href="#/thank-you-1" role="doc-biblioref" onclick="">2022</a>)</span>).<br>
 <br></p>
 <h3 id="outline-of-talk">Outline of Talk</h3>
 <ul>
@@ -650,7 +650,8 @@ has the best expected outcome.</p>
 <span id="cb1-14"><a href="#cb1-14"></a>  weights<span class="op">=</span> kernels_x_query.T <span class="op">@</span> np.linalg.inv(kernels_x_x)</span>
 <span id="cb1-15"><a href="#cb1-15"></a>  expectation <span class="op">=</span> <span class="va">self</span>.mean_y <span class="op">+</span> weights <span class="op">@</span> <span class="va">self</span>.y  <span class="co"># Dashed line</span></span>
 <span id="cb1-16"><a href="#cb1-16"></a>  uncertainty_squared <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> weights <span class="op">@</span> kernels_x_query</span>
-<span id="cb1-17"><a href="#cb1-17"></a>  uncertainty <span class="op">=</span> np.sqrt(uncertainty_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17"></a>  uncertainty <span class="op">=</span> np.sqrt(uncertainty_squared)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="cf">return</span> expectation, <span class="va">self</span>.std_y<span class="op">*</span>uncertainty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="run-the-experiment" class="slide level2">
 <h2>Run the experiment</h2>
@@ -767,7 +768,14 @@ has the best expected outcome.</p>
 <h2>BO Results</h2>
 
 <img data-src="./img/cpu_iteration.png" class="margin-caption r-stretch"></section>
-<section id="thank-you" class="slide level2 smaller scrollable">
+<section id="lets-look-at-the-code." class="slide level2">
+<h2>Lets look at the code.</h2>
+<p><a href="bo_scripts.py"></a></p>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank you</h2>
+</section>
+<section id="thank-you-1" class="slide level2 smaller scrollable">
 <h2>Thank you</h2>
 <p>We optimized a system that would have took us over 1000 years to a couple days!</p>
 <p><br></p>

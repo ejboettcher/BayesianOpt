@@ -269,6 +269,7 @@ def estimate(self, query_parameter):
   expectation = self.mean_y + weights @ self.y  # Dashed line
   uncertainty_squared = 1 - weights @ kernels_x_query
   uncertainty = np.sqrt(uncertainty_squared)
+  return expectation, self.std_y*uncertainty
 ```
 
 ## Run the experiment 
@@ -390,3 +391,9 @@ We can see how the systems is converging to an **optimized** solution.
 
 ![](./img/cpu_iteration.png)
 
+
+## Lets look at the code.
+ 
+[](bo_scripts.py)
+
+## Thank you
